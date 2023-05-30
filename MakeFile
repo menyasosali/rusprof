@@ -1,0 +1,14 @@
+gen:
+	protoc -I . -I ./proto/google/api --go_out=. --go-grpc_out=. --grpc-gateway_out=./rusprofile --grpc-gateway_opt paths=source_relative --swagger_out=./swagger --swagger_opt=logtostderr=true proto/rusprofile.proto
+
+serv:
+	go run cmd/server/main.go
+
+grpc:
+	go run transport/http.go
+
+
+
+
+
+

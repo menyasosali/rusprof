@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+import "proto/google/api/annotations.proto";
+
+package rusprofile;
+
+
+option go_package = "rusprofile/proto/";
+
+service RusProfileService {
+  rpc GetCompanyInfo(CompanyRequest) returns (CompanyResponse) {
+    option (google.api.http) = {
+      get: "/v1/company/{inn}"
+    };
+  }
+
+  rpc GetSwaggerUI(SwaggerUIRequest) returns (SwaggerUIResponse) {
+    option (google.api.http) = {
+      get: "/swaggerui"
+    };
+  }
+}
+
+message CompanyRequest {
+  string inn = 1;
+}
+
+message CompanyResponse {
+  string inn = 1;
+  string kpp = 2;
+  string name = 3;
+  string glavar = 4;
+}
+
+message SwaggerUIRequest {}
+
+message SwaggerUIResponse {
+  string html = 1;
+}
